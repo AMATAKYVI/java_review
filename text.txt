@@ -41,7 +41,33 @@ Generic methods
     public <T> String method(T input){}
     public <T extends ....> method(T input){} --> adding bound
     List<? extends ....> input --> ? is a wild card for type
+    List<? super ...> input --> ? super here is lower bound
+
+178 - nested classes, local types & annonymous classes
+
+    Encapsulation and access rules
+        private or public or protect
+    local classes
+        final 
+    annonymous class --> local with no Name , nested inside other class
+
+186 - Lambda Expressions
+
+    similar to what we been using in javascript
+    a functional interface is an interface that has one and only one, abstract method
+
+    Lambda Expressions: is a funcitonal programming approach (modern way)
+        just compute and return result (quick and easy)
     
+    Consumer - Function - Predicate - Supplier
+        consumer: void accept(T t) --> execute code without returning data
+        function: R apply(T t) --> return result of an operation
+        predicate: boolean test(T t) --> test if true or false
+        supplier: T get() --> return an instance of something
+
+    
+    
+
 
 
 
