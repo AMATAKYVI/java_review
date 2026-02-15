@@ -65,6 +65,22 @@ Generic methods
         predicate: boolean test(T t) --> test if true or false
         supplier: T get() --> return an instance of something
 
+207 - Hash
+
+    Hash Collection 
+        HashSet
+        LinkedHashSet
+        HashMap
+        LinkedHashMap
+    Set (unique, no duplicate)
+        derive from object  
+        access to equals or hashcode method override
+        operation: union, intersection, difference
+
+217 Feb 15 2026
+
+    Map another data structure in collection framework
+        key value pairs
     
     
 

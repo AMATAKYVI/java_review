@@ -1,6 +1,7 @@
 package d5.LambdaExp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -51,6 +52,15 @@ public class Example {
         };
 
         System.out.println(converter.apply(loveJava));
+
+        String[] namesUpper = {"anna", "ham", "bob"};
+
+        Arrays.stream(namesUpper)
+                .map((String x) -> x.toUpperCase())
+                .forEach(System.out::println);
+        List<String> backedByArray = Arrays.asList(namesUpper);
+
+        backedByArray.forEach(s -> System.out.println(s.toUpperCase()));
 
     }
 
