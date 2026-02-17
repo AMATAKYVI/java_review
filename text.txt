@@ -97,11 +97,16 @@ Generic methods
     Shallow copied: copy surface or structure not elements
     Deep copied: copy surface and strucutre and elements
     
+<<<<<<< HEAD
 240 Feb 17 2026
 
     Compact Constructor: is declared with no parentheses so no arguments
     Enum Constructor: 
     Static Initializer
+=======
+    Unmodifiable Views: for view only -- cannot made changes
+    
+>>>>>>> refs/remotes/origin/main
     
         
     

@@ -69,7 +69,7 @@ public class Main {
             }
         }
 
-        LocalDate lastDate = datedPur
+
     }
 
     private static void addPurchase(String name, Course course, double price) {

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-record GroceryItem(String name, double price) {
+record GroceryItemK(String name, double price) {
 
-    public GroceryItem(String name, double price) {
+    public GroceryItemK(String name, double price) {
 
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
