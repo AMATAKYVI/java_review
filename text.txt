@@ -81,7 +81,24 @@ Generic methods
 
     Map another data structure in collection framework
         key value pairs
+    EnumSet: set implementation for use with enum values
+    EnumMap: map implementation for use with enum type keys
+
+228 Feb 16 2026
+
+    Mutable: not remains constant
+    Immutable: remains constant (has some side effects)
+    Modifier:
+        Final --> just like the word "FINAL"
+            public final
+            protected final
+            private final 
+            --overriding vs hiding
+    Shallow copied: copy surface or structure not elements
+    Deep copied: copy surface and strucutre and elements
     
+    
+        
     
 
 
