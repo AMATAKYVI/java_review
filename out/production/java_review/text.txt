@@ -1,0 +1,111 @@
+161-vid Feb 11 2026
+
+Interface
+    Interface --> abstract type --> single specification for implement functionality
+    enum implements Interface
+    record implements Interface
+    class implements Interface
+    Interface extends "Another" Interface
+    abstract implements Interface
+
+    Summary: An abstract class provides common definition, as a base class, that multiple
+    derived classes can share
+
+        when to use?
+    - share code among serveral closely related classes
+    - expect classes to extends your abstract class to have common methods, fields, or access
+
+    Summary: the Interface decouples the "what" from the "how", and is used
+    to make different types behave in similar ways
+
+        when to use?
+    - you expect that unrelated classes will implement your interface
+    - you want to specify the behavior of a particular data type, but not concerned 
+    about who implements its behavior
+
+Generic
+    Generic class 
+        class Name<>{} --> using <T> any type allowed
+        can include many types class Name<T, S, U, V...>{}
+        bound class Name<T extends Interface/Class/Interface + Class/Multiple Interfaces> 
+
+172 Feb 12 2026
+
+Comparator --> interface use to make object comparable
+    int compare(T o1, T o2) --> compare two same type with each other
+
+Comparable --> interface use to make object comparable
+    int comapreTo(T o) --> compare the arguments with the current instance
+
+Generic methods
+    public <T> String method(T input){}
+    public <T extends ....> method(T input){} --> adding bound
+    List<? extends ....> input --> ? is a wild card for type
+    List<? super ...> input --> ? super here is lower bound
+
+178 - nested classes, local types & annonymous classes
+
+    Encapsulation and access rules
+        private or public or protect
+    local classes
+        final 
+    annonymous class --> local with no Name , nested inside other class
+
+186 - Lambda Expressions
+
+    similar to what we been using in javascript
+    a functional interface is an interface that has one and only one, abstract method
+
+    Lambda Expressions: is a funcitonal programming approach (modern way)
+        just compute and return result (quick and easy)
+    
+    Consumer - Function - Predicate - Supplier
+        consumer: void accept(T t) --> execute code without returning data
+        function: R apply(T t) --> return result of an operation
+        predicate: boolean test(T t) --> test if true or false
+        supplier: T get() --> return an instance of something
+
+207 - Hash
+
+    Hash Collection 
+        HashSet
+        LinkedHashSet
+        HashMap
+        LinkedHashMap
+    Set (unique, no duplicate)
+        derive from object  
+        access to equals or hashcode method override
+        operation: union, intersection, difference
+
+217 Feb 15 2026
+
+    Map another data structure in collection framework
+        key value pairs
+    EnumSet: set implementation for use with enum values
+    EnumMap: map implementation for use with enum type keys
+
+228 Feb 16 2026
+
+    Mutable: not remains constant
+    Immutable: remains constant (has some side effects)
+    Modifier:
+        Final --> just like the word "FINAL"
+            public final
+            protected final
+            private final 
+            --overriding vs hiding
+    Shallow copied: copy surface or structure not elements
+    Deep copied: copy surface and strucutre and elements
+    
+    Unmodifiable Views: for view only -- cannot made changes
+    
+    
+        
+    
+
+
+
+
+
+
+

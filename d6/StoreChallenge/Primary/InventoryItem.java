@@ -49,7 +49,7 @@ public class InventoryItem {
     }
 
     public void placeInventoryOrder() {
-        System.out.println("Placing inventory order for " + product.getName());
+//        System.out.println("Placing inventory order for " + product.getName());
     }
 
     public Product getProduct() {

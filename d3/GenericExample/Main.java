@@ -1,8 +1,7 @@
 package d3.GenericExample;
 
-import d3.GenericExample.NotGenerics.BaseballTeam;
-import d3.GenericExample.NotGenerics.FootballTeam;
-import d3.GenericExample.TrueGenerics.Team;
+
+
 
 public class Main {
 

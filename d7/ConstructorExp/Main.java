@@ -7,6 +7,10 @@ public class Main {
         Parent parent = new Parent();
         Child child = new Child();
 
+        System.out.println(parent);
+        System.out.println(child);
+
+
 
     }
 }

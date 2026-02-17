@@ -66,8 +66,8 @@ public class AdventureGame {
     }
 
     private void visit(Location location) {
-        location.nextPlaces.forEach((k, v) -> {
-            System.out.println("Go " + k + " you will go to " + v);
-        })
+//        location.nextPlaces.forEach((k, v) -> {
+//            System.out.println("Go " + k + " you will go to " + v);
+//        });
     }
 }
