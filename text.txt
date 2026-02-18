@@ -103,6 +103,9 @@ Generic methods
     Enum Constructor: 
     Static Initializer
 
+247 Feb 18 2026
+
+    Sealed new Modifier for classes and Interfaces
 
 
 
