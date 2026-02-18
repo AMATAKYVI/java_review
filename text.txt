@@ -106,6 +106,12 @@ Generic methods
 247 Feb 18 2026
 
     Sealed new Modifier for classes and Interfaces
+    Stream a sequence of elements supporting sequential and parallel aggregate operations
+        the stream and collection types were designed for different purposes
+        a collection is used to store and manage a series of elements in java providing direct access to
+            the collection elements
+    list.stream().limit().filter().map().sort().foreach() etc....
+        it just linked the method together like this chain methods
 
 
 

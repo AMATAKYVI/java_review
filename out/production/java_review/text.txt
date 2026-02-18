@@ -97,11 +97,20 @@ Generic methods
     Shallow copied: copy surface or structure not elements
     Deep copied: copy surface and strucutre and elements
     
-    Unmodifiable Views: for view only -- cannot made changes
-    
-    
-        
-    
+240 Feb 17 2026
+
+    Compact Constructor: is declared with no parentheses so no arguments
+    Enum Constructor: 
+    Static Initializer
+
+247 Feb 18 2026
+
+    Sealed new Modifier for classes and Interfaces
+    Stream a sequence of elements supporting sequential and parallel aggregate operations
+        the stream and collection types were designed for different purposes
+        a collection is used to store and manage a series of elements in java providing direct access to
+            the collection elements
+
 
 
 
