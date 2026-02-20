@@ -5,15 +5,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
         List<String> bingoPool = new ArrayList<>(75);
 
         int start = 1;
 
-        for(char c : "BINGO".toCharArray()){
-            for (int i = 0; i  < (start + 15) ; i ++) {
+        for (char c : "BINGO".toCharArray()) {
+            for (int i = 0; i < (start + 15); i++) {
                 bingoPool.add("" + c + i);
-              //  System.out.println("" + c + i);
+                //  System.out.println("" + c + i);
             }
             start += 15;
         }
@@ -26,7 +27,7 @@ public class Main {
 //            System.out.println(s);
 //        }
         firstOnes.replaceAll(s -> {
-            if(s.startsWith("G")  || s.startsWith("O")){
+            if (s.startsWith("G") || s.startsWith("O")) {
                 String updated = s.charAt(0) + "-" + s.substring(1);
                 System.out.println(updated + " ");
                 return updated;
@@ -36,7 +37,13 @@ public class Main {
 
         System.out.println("-----");
 
+        String[] names = {"Alice", "Bob", "Charlie", "David", "Eve"};
 
+        List<String> nameList = new ArrayList<>(names.length);
+        nameList.addAll(List.of(names));
 
+        nameList.stream().map(s -> s.toUpperCase()).forEach(System.out::println);
+
+        //cannot reuse stream once open and it done
     }
 }

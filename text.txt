@@ -113,8 +113,14 @@ Generic methods
     list.stream().limit().filter().map().sort().foreach() etc....
         it just linked the method together like this chain methods
 
+257 Feb 19 2026
 
-
+    stream() --> as the word suggest it is a stream
+        and it has a lot of methods to manipulate the stream of inputs
+        and producing the outputs
+    terminal operations: count(), max(), min(), average(), sum(), summaryStatistics()
+    boolean stream method will take Predicate function to deciding whether to return false or true
+    
 
 
 
