@@ -121,7 +121,14 @@ Generic methods
     terminal operations: count(), max(), min(), average(), sum(), summaryStatistics()
     boolean stream method will take Predicate function to deciding whether to return false or true
     
+254 Feb 21 2026
 
+    more stream method and linking
+    distinct(), filter()-takeWhile()-dropWhile(), limit(), map(), peek(), skip(), sorted()-sorted(Comparator)
+    count(), max(), min(), average(), sum(), summaryStatistics()
+    allMatch(), anyMatch(), noneMatch()
+
+260
 
 
 
