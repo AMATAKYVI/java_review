@@ -128,7 +128,28 @@ Generic methods
     count(), max(), min(), average(), sum(), summaryStatistics()
     allMatch(), anyMatch(), noneMatch()
 
-260
+    collect(), reduce(), toArray(), toList(), averageDouble()
+    averageInt(), averageLong(), counting(), collectingAndThen()
+    filtering()
+    isPresent(), orElse()
+
+    static import: import static java.util.stream.Collectors.*
+    let you import one or more static members of a class
+    flatMap --> flat to one map
+
+260 Feb 22 2026
+
+    overflow,underflow
+    java.util.Math
+    Math.random; seed or no seed, range in between
+    unique seed System.nanoTime(); --> current system nanoTime
+    
+274 Feb 23 2026
+
+    BigDecimal in dept
+        precision representation is difficult for number xxxx.xxxxx
+        scale and unscale value
+        
 
 
 
