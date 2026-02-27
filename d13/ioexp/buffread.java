@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -40,5 +41,10 @@ public class buffread {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        System.out.println("Done reading ------");
+
+        System.out.println(System.getProperty("file.encoding"));
+        System.out.println(Charset.defaultCharset().aliases());
     }
 }

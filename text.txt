@@ -214,6 +214,9 @@ Generic methods
     InputStream 
         abstract class representing an input stream of bytes
     
+    Encoding characters 
+        to transfer character in computer
+    
 
 
 
