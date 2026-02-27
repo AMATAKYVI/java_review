@@ -149,7 +149,53 @@ Generic methods
     BigDecimal in dept
         precision representation is difficult for number xxxx.xxxxx
         scale and unscale value
-        
+
+    java.time
+        class with time information
+    LocalDate
+    Date
+    Calendar
+    LocalTime
+    -temporalField: represents a specific field within
+        a date-time, such as MONTH_OF_YEAR, DAY_OF_WEEK,
+        HOUR_OF_DAY
+    epoch time 
+    System.currentTimeMillis
+    System.nanoTime
+    Localization--> different location display different format of time 
+        localization help with that depends on where the application is run at that time
+    Locale --> locality of the places
+    Internationalization --> designing to help with this concept of localization
+
+    Formatting: Dates, Numbers, Currencies
+        DateTimeFormatter help with format the date
+        Or we could use free package to help with numerical values
+    
+    ResourceBundle for Multi-language supporting
+
+    Regular Expression
+        String mostly
+        combinations characters has special meaning
+    
+    Literals: one to one match
+    Character Classes: predefined or defined yourself 
+        .[abc] [a-g] [A-Z] etc...
+    Quantifiers: metacharacter identify to make a match
+        * + ?
+    Boundary Matcher: position in the text
+        ^ $ \b
+    Groups: identify for capturing subexpression
+        ()
+
+301 Feb 26 2026
+
+    directory --> file system container for others directories
+    path --> either a directory or filename
+    root directory --> top level
+    current directory --> current level
+    absolute path --> includes everything
+    relative path --> path relative to current
+    
 
 
 
