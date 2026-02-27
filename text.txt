@@ -196,6 +196,24 @@ Generic methods
     absolute path --> includes everything
     relative path --> path relative to current
     
+305 Feb 27 2026
+
+    dept first --> visit all childs or any folder sibling up
+    breath first --> dependent nodes or sibling nodes walk
+    FileVisitor<> interface 
+    
+    Read file
+    write file
+    copy/move
+    delete
+    check info of file
+    list dir
+    walk tree
+    watch changes
+
+    InputStream 
+        abstract class representing an input stream of bytes
+    
 
 
 
