@@ -1,0 +1,11 @@
+================================================================================
+Index for: C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon
+Generated: 2026-03-01 18:37:33
+Total files: 5
+================================================================================
+
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\index_backup.txt  | 2026-03-01 18:35:54
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\png\index_backup.txt | 2026-03-01 18:35:54
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\png\user.png      | 2026-03-01 18:34:26
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\svg\home.svg      | 2026-03-01 18:34:26
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\svg\index_backup.txt | 2026-03-01 18:35:54

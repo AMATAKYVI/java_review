@@ -217,6 +217,10 @@ Generic methods
     Encoding characters 
         to transfer character in computer
     
+316 Mar 01 2026
+
+    file and directory manipulation
+    RandomAccessFile --> access file at any time 
 
 
 

@@ -1,0 +1,7 @@
+create a process that will generate an index.txt file for each directory and subdirectory
+
+in each of directories (public, asset, icon) create an index.txt file
+in each index.txt file list all the content of the current directory with full paths and the date of each item was create this should be recursive. the index.txt file of the parent should contain all items that are listed in the index.txt of the child
+
+next make a copy of index.txt in each sub folder
+after these copies, run your code to regernate each index.txt file and verify your backup copies are listed there

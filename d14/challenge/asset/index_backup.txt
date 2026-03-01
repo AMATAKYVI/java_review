@@ -1,0 +1,8 @@
+================================================================================
+Index for: C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\asset
+Generated: 2026-03-01 18:35:27
+Total files: 2
+================================================================================
+
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\asset\fonts\arial.ttf  | 2026-03-01 18:34:26
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\asset\images\logo.png  | 2026-03-01 18:34:26

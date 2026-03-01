@@ -1,0 +1,8 @@
+================================================================================
+Index for: C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\svg
+Generated: 2026-03-01 18:37:33
+Total files: 2
+================================================================================
+
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\svg\home.svg      | 2026-03-01 18:34:26
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\icon\svg\index_backup.txt | 2026-03-01 18:35:54

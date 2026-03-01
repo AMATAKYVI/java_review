@@ -1,0 +1,7 @@
+================================================================================
+Index for: C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\asset\images
+Generated: 2026-03-01 18:35:27
+Total files: 1
+================================================================================
+
+C:\Users\yviam\Documents\GitHub\java_review\d14\challenge\asset\images\logo.png  | 2026-03-01 18:34:26
