@@ -59,7 +59,37 @@ public class Main {
                 System.out.println("Installed!");
             });
             installThread.start();
-            thread.join();
+            // thread.join();
+
+            Thread oddThread = new OddThread();
+            Thread evenThread = new Thread(new EvenThread());
+            oddThread.start();
+            evenThread.start();
+
+        }
+    }
+}
+
+class OddThread extends Thread {
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 1) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+class EvenThread implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                System.out.println(i);
+            }
         }
     }
 }
