@@ -222,6 +222,11 @@ Generic methods
     file and directory manipulation
     RandomAccessFile --> access file at any time 
 
+324 Mar 02 2026
+
+    Thread --> create, info, instantiation
+    
+
 
 
 
