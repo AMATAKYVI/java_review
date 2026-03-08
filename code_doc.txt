@@ -1,0 +1,223 @@
+PyQuaticus Hybrid Gate Code Documentation
+========================================
+
+Repository
+----------
+- Name: pyquaticus
+- Main scope of this document: hybrid PPO + heuristic safety gate path used in 3v3 deployment.
+
+Primary Files
+-------------
+1) rl_test/heuristics/heuristic_gate_2.py
+- Defines class HeuristicGate2.
+- Purpose: takes PPO-proposed discrete action and returns a safer action when collision/wall/tag/freeze risks are detected.
+- Supports both competition-style local observations and optional env-backed fallbacks.
+
+2) rl_test/deploy_3v3_gate_ppo.py
+- Loads RLlib PPO policies for RED team agents agent_3/agent_4/agent_5.
+- Calls gate.compute_action(...) directly per RED agent each step.
+- Counts gate activation when returned action differs from PPO action.
+
+High-Level Runtime Pipeline
+---------------------------
+At each environment step for each RED agent:
+1. PPO proposes discrete action index.
+2. HeuristicGate2.compute_action(...) evaluates that action against safety logic.
+3. Gate either keeps PPO action or overrides with a safer candidate.
+4. Action executes in CompPyquaticusEnv.
+
+HeuristicGate2: Core Design
+---------------------------
+Inputs
+- agent_id: string agent key, e.g. "agent_3".
+- obs / unorm_obs: local agent observation; can resolve to unnormalized dict.
+- state: optional global state for position history.
+- mappo_action: PPO proposed action (index-like).
+- env: optional environment object for dt/speed/fallback boundary checks.
+
+Output
+- int action index in ACTION_MAP.
+
+Internal Persistent State (per agent)
+- position_history: deque for freeze detection.
+- no_op_streak: consecutive no-op control.
+- max_speed_estimate: learned max speed when env-specific max speed not available.
+- _freeze_turn_sign: persistent left/right sign used for freeze escape turns.
+- _emergency_cooldown: recovery window after hard wall emergency.
+
+Action Model Helpers
+--------------------
+- _to_action_index: robust cast from ndarray/int/float.
+- _action_heading: heading component from ACTION_MAP[action_idx][1].
+- _action_speed_frac: speed fraction from ACTION_MAP[action_idx][0].
+- _is_noop: speed fraction <= 0.0.
+- no_op_action is discovered by scanning ACTION_MAP for first zero-speed entry (not hardcoded to last index).
+
+Observation/Hazard Parsing
+--------------------------
+- _iter_relative_hazards(obs_dict): yields teammate/opponent/obstacle local hazards with distance+bearing.
+- _iter_walls(obs_dict): yields wall_i distance+bearing.
+- Hazard model is local-frame and bearing-driven.
+
+Risk Components
+---------------
+1) Collision risk (_collision_risk)
+- Hard block when moving into nearby teammate/opponent cone.
+- Dynamic lookahead includes estimated other-agent closing motion from relative heading + speed.
+- Uses inverse-square repulsion risk and directional penalties.
+- Tagged mode increases keepout via tagged_keepout_scale.
+
+Teammate/Opponent Collision Avoidance Details
+--------------------------------------------
+The gate does include explicit teammate/opponent avoidance, not just wall checks.
+
+For teammates and opponents:
+- Relative hazards are parsed from tuple keys like ("teammate_i", "distance") and ("opponent_i", "distance").
+- Candidate actions are evaluated with angle-aware gating: only headings that can close distance are considered risky.
+- Hard collision block: when a dynamic agent is close and the chosen heading is pointed into that agent's cone, action is rejected.
+- Projected distance check: one-step self motion + estimated other-agent motion (from relative_heading and other speed) are used to reject actions that will violate keepout in lookahead steps.
+
+For opponents specifically (tag-aware behavior):
+- If an opponent is tag-capable (or carrier-vulnerable fallback condition is true), keepout is raised to at least tag_keepout_radius.
+- Close frontal approaches to tag-capable opponents are hard-blocked before geometric overlap.
+- Additional opponent-tag risk penalty is added so ranking prefers moving away, not just "barely safe" forward paths.
+
+Net effect:
+- The gate should avoid both teammate collisions and dangerous proximity to opponents, then prefer lower-risk alternatives.
+
+2) Boundary risk (_boundary_risk)
+- Uses wall bearings and projected closing distance over boundary_lookahead_steps.
+- If already inside boundary_buffer, blocks only actions heading toward that wall (allows escape direction).
+- Optional env fallback checks projected world-frame position in arena bounds if wall observations missing.
+
+3) Freeze/no-op control
+- _freeze_safe limits repeated no-op via no_op_limit.
+- _is_frozen_now checks low progress across freeze_window.
+- _freeze_escape_heading provides 90-degree turn based on persistent sign.
+- _commit_freeze_turn flips sign only when a freeze-escape action is actually committed.
+
+Threat Detectors and Emergency Headings
+---------------------------------------
+Wall
+- _wall_threat_present(obs_dict, step_dist, pref_heading): soft threat test using action-relative angle and trigger distance.
+- _emergency_wall_escape_heading: vector-summed wall repulsion from threatening walls; corner-safe.
+- _wall_escape_heading: broader repulsion-based wall escape candidate.
+- Hard emergency when nearest wall <= wall_emergency_distance.
+- Recovery window enforced with _emergency_cooldown.
+
+Head-on traffic
+- _headon_threat_present and _headon_escape_heading.
+- _headon_emergency_heading for imminent frontal incoming threats.
+
+Tag risk
+- _tag_threat_emergency_heading: evasive heading if opponent likely can tag.
+- _tag_threat_present: Boolean conservative detector; blocks fast-path acceptance when tag threat exists.
+
+Tagged return traffic
+- _tagged_traffic_emergency_heading: repulsion escape while tagged in crowds.
+- _tagged_traffic_present: Boolean detector for nearby teammate/opponent traffic while tagged.
+
+Decision Logic in compute_action
+--------------------------------
+1) Precompute context
+- Resolve obs, update speed estimate/history.
+- Parse preferred action.
+- Compute step distances, near_wall_now, wall_threat_now, wall_recovery_active.
+- Build danger flags:
+  - wall_danger
+  - tagged_traffic_now
+  - tag_threat_now
+  - conservative_danger = wall_danger or tagged_traffic_now or tag_threat_now
+
+2) Primary fast path
+- If preferred action is safe and not in hard near-wall emergency and no current tag/traffic threat, keep PPO action.
+
+3) Emergency candidate generation
+- Build candidate list from:
+  - wall emergency heading
+  - head-on emergency heading
+  - tag-threat emergency heading
+  - tagged-traffic emergency heading
+  - freeze emergency heading
+- Track freeze_escape_indices so freeze turn sign flips only when such an action is chosen.
+
+4) Conservative speed filtering
+- In conservative_danger zones, speed-limit emergency candidates to speed fraction <= 0.5.
+- Keep freeze tracking synchronized with post-filter candidate list.
+
+5) Emergency selection
+- First safe emergency candidate wins.
+
+6) Secondary fast path
+- If preferred action was safe all along, allow it only when:
+  - not conservative_danger, or
+  - preferred speed <= 0.5.
+
+7) Fallback search
+- Build prioritized escape candidates (wall/head-on), then merge with ordered full action list.
+- Apply speed cap in conservative_danger.
+- Pick minimum-risk safe action.
+
+Compatibility APIs
+------------------
+- check_collision_safety(...)
+- check_boundary_safety(...)
+- is_action_safe(...)
+
+These wrappers preserve older behavior and are still usable by legacy scripts, but current 3v3 deployment uses compute_action(...) directly.
+
+Deploy Script Behavior (deploy_3v3_gate_ppo.py)
+-----------------------------------------------
+- BLUE team currently uses no-op actions.
+- RED team uses PPO policies loaded from checkpoints.
+- Gate is instantiated once and reset each episode.
+- For each RED agent step:
+  - ppo_action = policy.compute_single_action(...)
+  - action = gate.compute_action(...)
+- Tracks per-agent gate activations and episode/total rewards.
+
+Key Safety Improvements Present in Current Code
+-----------------------------------------------
+- No-op index no longer assumes last ACTION_MAP entry.
+- Wall threat check action-relative to preferred heading.
+- Corner-safe wall emergency vector summation.
+- Secondary fast-path speed-gated during conservative danger.
+- Freeze turn sign flips on committed freeze escape only.
+- Freeze candidate tracking synchronized after speed filtering.
+- Tagged traffic and explicit tag-threat detection now block unsafe fast acceptance.
+
+Known Behavior Notes
+--------------------
+- _freeze_safe currently mainly enforces no-op streak; movement blocking under freeze is permissive by design.
+- Fallback candidate evaluation is comprehensive and can be compute-heavy with large ACTION_MAP/hazard count.
+
+Known Weak Spots To Watch
+-------------------------
+- If opponent metadata fields are stale/noisy (on_side, tagging_cooldown, is_disabled), tag-capable inference can be conservative or occasionally delayed.
+- If PPO repeatedly proposes high-speed actions in dense traffic, gate may still choose aggressive headings unless keepout/penalties are tuned high enough.
+- If ACTION_MAP has many similar high-speed headings and few low-speed lateral options, safe escape diversity can be limited.
+
+How to Run
+----------
+From rl_test/:
+python deploy_3v3_gate_ppo.py \
+  --render \
+  --ppo-agent-3 ../ray_test/iter_0/policies/agent-0-policy \
+  --ppo-agent-4 ../ray_test/iter_0/policies/agent-1-policy \
+  --ppo-agent-5 ../ray_test/iter_0/policies/agent-2-policy \
+  --episodes 10 \
+  --max-steps 2500
+
+Tuning Knobs (Most Impactful)
+------------------------------
+- tag_keepout_radius
+- tag_reverse_radius
+- tagged_traffic_radius
+- tagged_keepout_scale
+- wall_emergency_distance
+- boundary_buffer
+- boundary_lookahead_steps
+- collision_radius
+- collision_lookahead_steps
+
+End of document.
