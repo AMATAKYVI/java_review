@@ -225,6 +225,40 @@ Generic methods
 324 Mar 02 2026
 
     Thread --> create, info, instantiation
+
+329 Mar 07 2026
+
+    Thread 
+        interference -> another active thread has an open door
+            to that same unit of work, where the paused thread is
+            only partially done
+    Interleaving -> threads run concurrently which overlap or interleave in time
+    Atomic actions -> happens all at once
+        action run until complete cannot interrupt
+    volatile --> modifier --> indicator that variable may changes by multiple thread
+        has limited usage
+    
+    Sychronization -> block critical section and let one thread run at a time
+        Critical section: where shared resource happened
+    
+    Sychronization feature in Java allow you to lock certain part of section
+        instead of blocking it entirely
+    
+333 Mar 8 2026
+
+    synchronize(this.-object--field){
+        //critical or share resource code here
+    }
+
+    Producer and Consumer concepts
+
+    Mutex lock
+        lock()
+        unlock()
+    explicit control-- either lock or release
+    timeout-- without blocking indefinitely
+    interrupt locking-- handling acquisition more gracefully
+    improve debugging-- query of waiting locks, check if thread hold lock
     
 
 
