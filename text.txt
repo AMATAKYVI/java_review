@@ -264,6 +264,21 @@ Generic methods
 
 344 Mar 11 2026
 
+    hashmap -> lack thread synchronization
+
+345 Mar 11 2026
+
+    normal stream and parrallel stream
+    concurrent collection
+    arrayblockingqueue -- thread safe -- for shared resource logic
+    deadlock: loop
+    livelock: two or more loop
+    starvation: unable to continue due to indefinitely waiting
+
+    fair lock: ensure for thread to access resource faily and orderly fashion
+    
+    atomic variable: help with all above (class)
+    watchservice: manitoring changes and allow to do something base on changes
     
 
 

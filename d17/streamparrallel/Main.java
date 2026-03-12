@@ -74,6 +74,11 @@ To fetch a pail of water.     """;
                 .collect(Collectors.groupingByConcurrent(Person::lastName, Collectors.counting()));
 
         System.out.println(lastNameCounts);
+
+        var lastCounts = Stream.generate(Person::new).limit(10000).parallel()
+                .collect(Collectors.groupingByConcurrent(Person::lastName, Collectors.summingLong(person -> 1L)));
+        System.out.println(lastCounts);
+
     }
 }
 
