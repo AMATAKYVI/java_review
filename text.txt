@@ -288,6 +288,17 @@ Generic methods
     
     ANSI SQL: America National Standard Institute standard query language
     
+    JPA: jarkarta persistance API (middle man for helping with database -> java code)
+        -for relational database
+    
+    Entity: represents a table in database
+
+    entitymanager: to help handle many different entitymanager
+    
+    JPQL: help with forming query to database -> plain string
+    CriteriaBuilder: help with forming query to database -> type safe way instead of plain string
+
+
      
 
 
