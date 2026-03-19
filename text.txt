@@ -288,6 +288,20 @@ Generic methods
     
     ANSI SQL: America National Standard Institute standard query language
     
+    Challenges working with database JDBC
+        performance tuning
+        transaction management
+        resource leaks
+        data type mapping
+        concurrency control
+        scability
+        testing and integration
+        vendor lock-in
+        SQL Injection
+        Monitoring and Logging
+    
+    CallableStatement: 
+
     JPA: jarkarta persistance API (middle man for helping with database -> java code)
         -for relational database
     
@@ -297,6 +311,41 @@ Generic methods
     
     JPQL: help with forming query to database -> plain string
     CriteriaBuilder: help with forming query to database -> type safe way instead of plain string
+
+384 March 15 2026
+
+    Network: bunch of local or private computer connected 
+    Host: one central let other computer connect and pipe out wider
+
+    IPv6 address: just like the home address where to locate your computer
+
+    Data transfer or talking to each other required rules or protocols
+    Why?
+        Because we want to have a security mechanisms in a way of transmission
+
+    java.net
+    java.net.http
+    java.nio.channels
+
+    sockets: as the name suggest like an electric socket for plug to get electricity
+        while here it is a connection between one to another computer
+    
+    single connection to one server
+    multiple connection to one server
+
+    ServerSocket vs ServerSocketChannel
+        same for listen to connection
+        socket will block (simple), channels open for all (complex)
+
+    Types Buffer (primitive and objects -- ByteBuffer)
+        things that transfer in the process
+        Buffer is what passing through to network 
+    
+    ByteBuffer Operations
+        
+    
+
+
 
 
      
