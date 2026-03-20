@@ -1,5 +1,8 @@
 package com.networkexp;
 
+import java.nio.ByteBuffer;
+import java.util.function.Consumer;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -24,6 +27,21 @@ public class Main {
         // } catch (Exception e) {
         //     e.printStackTrace();
         // }
+        Consumer<ByteBuffer> consumer = buffer -> {
+            while (buffer.hasRemaining()) {
+                System.out.print(buffer.get() + " ");
+            }
+            System.out.println();
+        };
+
+        ByteBuffer buffer = ByteBuffer.allocate(200);
+        doOperation("Initial state", buffer, consumer);
+        doOperation("Flip buffer", buffer.flip(), consumer);
     }
 
+    private static void doOperation(String op, ByteBuffer buffer, Consumer<ByteBuffer> consumer) {
+        System.out.printf("%-30s", op);
+        consumer.accept(buffer);
+        System.out.println("Buffer position: " + buffer.position() + ", limit: " + buffer.limit());
+    }
 }

@@ -342,8 +342,21 @@ Generic methods
         Buffer is what passing through to network 
     
     ByteBuffer Operations
-        
+
+390 March 19 2026
+
+    ByteBuffer: limit, flip, put, etc 
+
+    Event Driven Selector:
+        event expect to occur
+        event trigger and the system reacts sharing the event notifications with interested parties
+
+    UDP: no need reliable connection, or two-way connection
+        datagram is a self-contained message
+        which protocol to use will depend on the application that we looking to write
     
+    
+
 
 
 
