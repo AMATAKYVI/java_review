@@ -355,7 +355,16 @@ Generic methods
         datagram is a self-contained message
         which protocol to use will depend on the application that we looking to write
     
+395 March 21 2026
+
+    URL: uniform resource locator
+    URI: uniform resource identifier
+    URN: uniform resource name 
+
+    relative URI: is a reference to resource such as webpage
+        file, or image that's relative to the current context
     
+     
 
 
 
